@@ -1,24 +1,23 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { fetchCountries } from "@/api";
+import SearchBar from "@/components/SearchBar";
+import CountryList from "@/components/CountryList";
+import { HomeProps } from "@/types/components";
 
-export default function Home() {
-  const router = useRouter();
-  const code = "kr";
-
-  const onMoveSeachPage = () => {
-    router.push({
-      pathname: "/country/[code]",
-      query: { code: code },
-    });
-  };
+export default function Home({ countries }: HomeProps) {
   return (
     <div>
-      home page
-      <button className="flex bg-white text-black" onClick={onMoveSeachPage}>
-        search page 이동
-      </button>
-      <Link href={"/search"}>Search Page 이동</Link>
-      {/* <Link href={}>{code}</Link> */}
+      <SearchBar />
+      <CountryList countries={countries} />
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const countries = await fetchCountries();
+
+  return {
+    props: {
+      countries,
+    },
+  };
+};
