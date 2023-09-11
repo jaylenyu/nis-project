@@ -58,7 +58,7 @@ export default function Country({ country }: CountryDataProps) {
             className="h-full w-full rounded-lg"
           />
         </div>
-        <div className="flex flex-col justify-center items-start h-80 w-120  leading-10">
+        <div className="flex flex-col justify-center items-start h-80 w-120 leading-10">
           <div>
             <b>Code</b> : {code}
           </div>
