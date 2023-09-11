@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { CountryProps } from "@/types/components";
 import styled from "styled-components";
@@ -18,11 +19,14 @@ export default function CountryItem({
 
   return (
     <CountryItemContainer onClick={onClickItem} key={code}>
-      <img
-        src={flagImg}
-        alt="flag"
-        className="h-1/2 w-full rounded-t-lg object-fill"
-      />
+      <div className="h-1/2 relative">
+        <Image
+          src={flagImg}
+          fill
+          alt="nation flag"
+          className="h-1/2 w-full rounded-t-lg"
+        />
+      </div>
       <div className="flex flex-col h-1/2 p-4 text-base">
         <div className="pb-2 font-bold">
           {flagEmoji} {commonName}

@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { fetchSearchResult } from "@/api";
-import { GetServerSideProps } from "next";
-import { SearchProps } from "@/types/components";
 import { useRouter } from "next/router";
 import SearchBar from "@/components/SearchBar";
 import CountryList from "@/components/CountryList";
+import Head from "next/head";
 
 export default function Search() {
   const router = useRouter();
@@ -24,10 +23,14 @@ export default function Search() {
     }
   }, [q]);
 
-  console.log(countries);
-
   return (
     <>
+      <Head>
+        <title>{q} - NIS Search Result</title>
+        <meta property="og:image" content="/thumbnail.png" />
+        <meta property="og:title" content="NIS Search Result" />
+        <meta property="og:description" content="National Infomation System" />
+      </Head>
       <SearchBar />
       <CountryList countries={countries} />
     </>
