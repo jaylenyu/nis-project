@@ -23,6 +23,7 @@ export default function CountryItem({
         <Image
           src={flagImg}
           fill
+          sizes="lx"
           alt="nation flag"
           className="h-1/2 w-full rounded-t-lg"
         />
@@ -32,9 +33,9 @@ export default function CountryItem({
           {flagEmoji} {commonName}
         </div>
         <div>
-          <div>지역 : {region}</div>
-          <div className="truncate">수도 : {capital}</div>
-          <div>인구 : {population.toLocaleString()}</div>
+          <div>reg. : {region}</div>
+          <div className="truncate">cap. : {capital}</div>
+          <div>pop. : {population.toLocaleString()}</div>
         </div>
       </div>
     </CountryItemContainer>

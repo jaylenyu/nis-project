@@ -13,7 +13,7 @@ export default function Home({ countries }: HomeProps) {
         <meta property="og:title" content="NIS" />
         <meta property="og:description" content="National Infomation System" />
       </Head>
-      <SearchBar />
+      <SearchBar countries={countries} />
       <CountryList countries={countries} />
     </div>
   );
