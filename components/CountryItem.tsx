@@ -26,6 +26,7 @@ export default function CountryItem({
           sizes="lx"
           alt="nation flag"
           className="h-1/2 w-full rounded-t-lg"
+          priority={false}
         />
       </div>
       <div className="flex flex-col h-1/2 p-4 text-base">

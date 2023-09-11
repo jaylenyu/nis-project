@@ -54,6 +54,7 @@ export default function Country({ country }: CountryDataProps) {
           <Image
             src={flagImg}
             fill
+            priority={true}
             alt="nation flag"
             className="h-full w-full rounded-lg"
           />
