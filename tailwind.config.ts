@@ -31,6 +31,13 @@ const config: Config = {
       spacing: {
         "120": "30rem",
       },
+      screens: {
+        sx: { min: "0px", max: "599px" },
+        sm: { min: "600px", max: "819px" },
+        md: { min: "820px", max: "1099px" },
+        lg: { min: "1100px", max: "1279px" },
+        xl: { min: "1280px" },
+      },
     },
   },
   plugins: [],

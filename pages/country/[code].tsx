@@ -60,33 +60,33 @@ export default function Country({ country }: CountryDataProps) {
         </div>
         <div className="flex flex-col justify-center items-start h-80 w-120  leading-10">
           <div>
-            <b>국가 코드</b> : {code}
+            <b>Code</b> : {code}
           </div>
           {commonName === officialName ? (
             <div>
-              <b>국가 이름 및 공식 명칭</b> : {flagEmoji} {commonName}
+              <b>Official Name</b> : {flagEmoji} {commonName}
             </div>
           ) : (
             <>
               <div>
-                <b>국가 이름</b> : {flagEmoji} {commonName}
+                <b>Nation Name</b> : {flagEmoji} {commonName}
               </div>
               <div>
-                <b>공식 명칭</b> : {flagEmoji} {officialName}
+                <b>Official Name</b> : {flagEmoji} {officialName}
               </div>
             </>
           )}
           <div>
-            <b>국가 수도</b> : {capital}
+            <b>Capital</b> : {capital}
           </div>
           <div>
-            <b>지역</b> : {region}
+            <b>Region</b> : {region}
           </div>
           <div>
-            <b>인구</b> : {population}
+            <b>Population</b> : {population}
           </div>
           <div>
-            <b>지도 보기</b> :{" "}
+            <b>Map</b> :{" "}
             <Link
               className="text-slate-500 underline decoration-slate-500/30"
               href={googleMapURL}

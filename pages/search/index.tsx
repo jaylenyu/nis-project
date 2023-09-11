@@ -31,7 +31,7 @@ export default function Search() {
         <meta property="og:title" content="NIS Search Result" />
         <meta property="og:description" content="National Infomation System" />
       </Head>
-      <SearchBar />
+      <SearchBar countries={countries} />
       <CountryList countries={countries} />
     </>
   );
