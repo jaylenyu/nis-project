@@ -7,6 +7,7 @@ export interface CountryProps {
   region: string;
   population: number;
   officialName: string;
+  googleMapURL: string;
 }
 
 export interface HomeProps {
