@@ -47,10 +47,11 @@ const CountryItemContainer = styled.div`
   flex-direction: column;
   height: 20rem;
   width: 15rem;
+  justify-content: center;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  box-sizing: content-box;
   border-radius: 8px;
+  box-sizing: border-box;
   cursor: pointer;
   transition: all 150ms ease-in-out;
 
