@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </h1>
       </header>
       <main>{children}</main>
-      <footer className="flex justify-center items-center h-40 text-sm text-slate-500">
+      <footer className="flex justify-center items-center h-40 sm:h-20 sx:h-10 text-sm text-slate-500">
         © 2023 YU JEONG IN All right reserved.
       </footer>
     </div>
