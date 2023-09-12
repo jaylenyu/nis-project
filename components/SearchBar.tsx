@@ -32,8 +32,8 @@ export default function SearchBar({ countries }: CountryListProps) {
     if (searchInputValue.length > 0) setShowSearchList(true);
   };
 
-  const onInsertInputValue = e => {
-    setSearchInputValue(e.target.innerText);
+  const onInsertInputValue = (e: React.MouseEvent<HTMLLIElement>) => {
+    setSearchInputValue(e.currentTarget.innerText);
 
     if (searchInputRef.current !== null) {
       searchInputRef.current.focus();
@@ -41,10 +41,10 @@ export default function SearchBar({ countries }: CountryListProps) {
   };
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    function handleClickOutside(e: MouseEvent) {
       if (!searchInputRef.current) return;
 
-      if (!searchInputRef.current.contains(event.target as Node)) {
+      if (!searchInputRef.current.contains(e.target as Node)) {
         setShowSearchList(false);
       }
     }
