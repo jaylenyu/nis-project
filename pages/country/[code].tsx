@@ -49,17 +49,17 @@ export default function Country({ country }: CountryDataProps) {
           content={`${commonName} - Infomation`}
         />
       </Head>
-      <div className="flex flex-col justify-center items-center p-20">
-        <div className="relative h-80 w-120">
+      <div className="flex flex-col justify-center items-center p-20 sx:p-10">
+        <div className="relative h-80 w-120 sm:w-80 sm:h-52 sx:w-80 sx:h-52">
           <Image
             src={flagImg}
             fill
             priority={true}
             alt="nation flag"
-            className="h-full w-full rounded-lg"
+            className="h-1/2 w-full rounded-lg"
           />
         </div>
-        <div className="flex flex-col justify-center items-start h-80 w-120 leading-10">
+        <div className="flex flex-col justify-center items-start h-80 w-120 leading-10 sm:w-80 sm:h-fit sm:mt-10 sx:w-80 sx:h-fit sx:mt-10">
           <div>
             <b>Code</b> : {code}
           </div>
