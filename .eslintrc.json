@@ -11,14 +11,13 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "airbnb",
     "airbnb-typescript",
     "plugin:prettier/recommended",
     "next/core-web-vitals",
     "prettier"
   ],
   "rules": {
-	"react/react-in-jsx-scope": "off",
+    "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }]
   }
 }
