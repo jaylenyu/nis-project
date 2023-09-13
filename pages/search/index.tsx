@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
 import { fetchSearchResult } from "@/api";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import SearchBar from "@/components/SearchBar";
 import CountryList from "@/components/CountryList";
-import Head from "next/head";
+import Spinner from "@/components/Spinner";
 
 export default function Search() {
   const router = useRouter();
   const { q } = router.query;
   const [countries, setCountries] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const setData = async () => {
+    setIsLoading(true);
     if (typeof q === "string") {
       const data = await fetchSearchResult(q);
       setCountries(data);
+      setIsLoading(false);
     }
   };
 
@@ -22,6 +26,10 @@ export default function Search() {
       setData();
     }
   }, [q]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
