@@ -3,18 +3,18 @@ import { useRouter } from "next/router";
 import { fetchCountry } from "@/api";
 import { CountryDataProps } from "@/types/components";
 import { GetStaticPaths, GetStaticProps } from "next";
+import { useLoadScript, GoogleMap, MarkerF } from "@react-google-maps/api";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
-import { useLoadScript, GoogleMap, MarkerF } from "@react-google-maps/api";
+import Spinner from "@/components/Spinner";
+import styled from "styled-components";
 
 export default function Country({ country }: CountryDataProps) {
   const router = useRouter();
   const { code } = router.query;
-
   const [mapCenter, setMapCenter] = useState({
-    lat: 0,
-    lng: 0,
+    lat: 100,
+    lng: 10,
   });
 
   const mapOptions = useMemo<google.maps.MapOptions>(
@@ -29,50 +29,6 @@ export default function Country({ country }: CountryDataProps) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API as string,
   });
-
-  useEffect(() => {
-    if (country) {
-      getLatLngBycommonName(country.commonName)
-        .then(({ lat, lng }) => {
-          setMapCenter({ lat, lng });
-        })
-        .catch(error => {
-          console.error("위치 정보를 가져오는 중 오류 발생:", error);
-        });
-    }
-  }, [country]);
-
-  if (!isLoaded) {
-    return <p>Loading...</p>;
-  }
-
-  if (router.isFallback || !country) {
-    return (
-      <>
-        <Head>
-          <title>NIS</title>
-          <meta property="og:image" content="/thumbnail.png" />
-          <meta property="og:title" content="NIS" />
-          <meta
-            property="og:description"
-            content="National Infomation System"
-          />
-        </Head>
-        <div>Loading...</div>
-      </>
-    );
-  }
-
-  const {
-    flagImg,
-    flagEmoji,
-    commonName,
-    officialName,
-    capital,
-    region,
-    population,
-    googleMapURL,
-  } = country;
 
   function getLatLngBycommonName(commonName: string) {
     return new Promise<{ lat: number; lng: number }>((resolve, reject) => {
@@ -94,6 +50,48 @@ export default function Country({ country }: CountryDataProps) {
     });
   }
 
+  useEffect(() => {
+    async function fetchMapCenter() {
+      if (country) {
+        try {
+          const { lat, lng } = await getLatLngBycommonName(country.commonName);
+          setMapCenter({ lat, lng });
+        } catch (error) {
+          console.error("위치 정보를 가져오는 중 오류 발생:", error);
+        }
+      }
+    }
+
+    fetchMapCenter();
+  }, [country]);
+
+  if (router.isFallback || !country || !isLoaded) {
+    return (
+      <>
+        <Head>
+          <title>NIS</title>
+          <meta property="og:image" content="/thumbnail.png" />
+          <meta property="og:title" content="NIS" />
+          <meta
+            property="og:description"
+            content="National Infomation System"
+          />
+        </Head>
+        <Spinner />
+      </>
+    );
+  }
+
+  const {
+    flagImg,
+    flagEmoji,
+    commonName,
+    officialName,
+    capital,
+    region,
+    population,
+  } = country;
+
   return (
     <>
       <Head>
@@ -105,66 +103,70 @@ export default function Country({ country }: CountryDataProps) {
           content={`${commonName} - Infomation`}
         />
       </Head>
-      <div className="flex flex-col justify-center items-center h-fit p-20 sx:p-10">
-        <div className="relative h-80 w-120 sm:w-80 sm:h-52 sx:w-80 sx:h-52">
-          <Image
-            src={flagImg}
-            fill
-            priority={true}
-            alt="nation flag"
-            className="h-1/2 w-full rounded-lg"
-          />
-        </div>
-        <div className="flex flex-col justify-center items-start h-80 w-120 leading-10 sm:w-80 sm:h-fit sm:mt-10 sx:w-80 sx:h-fit sx:mt-10">
-          <div>
-            <b>Code</b> : {code}
+      <div className="flex justify-around h-fit p-20 sx:p-10 md:flex md:flex-col md:items-center sm:flex sm:flex-col sm:items-center sx:flex sx:flex-col sx:items-center">
+        <div className="w-120 md:flex md:flex-col md:items-center md:mb-10 sm:flex sm:flex-col sm:items-center sm:w-full sm:mb-5 sx:flex sx:flex-col sx:items-center sx:h-fit sx:w-full sx:mb-5">
+          <CountryTitle>{officialName}</CountryTitle>
+          <div className="relative h-80 w-120 sm:w-80 sm:h-52 sx:w-80 sx:h-52">
+            <Image
+              src={flagImg}
+              fill
+              sizes="lx"
+              priority={true}
+              alt="nation flag"
+              className="h-1/2 w-full rounded-lg shadow-2xl"
+            />
           </div>
-          {commonName === officialName ? (
+          <div className="flex flex-col justify-center items-start h-fit w-120 mt-10 leading-10 md:mt-10 sm:w-80 sm:h-fit sm:mt-10 sx:w-80 sx:h-fit sx:mt-10">
             <div>
-              <b>Official Name</b> : {flagEmoji} {commonName}
+              <b>Code</b> : {code}
             </div>
-          ) : (
-            <>
+            {commonName === officialName ? (
               <div>
-                <b>Nation Name</b> : {flagEmoji} {commonName}
+                <b>Official Name</b> : {flagEmoji} {commonName}
               </div>
-              <div>
-                <b>Official Name</b> : {flagEmoji} {officialName}
-              </div>
-            </>
-          )}
-          <div>
-            <b>Capital</b> : {capital}
-          </div>
-          <div>
-            <b>Region</b> : {region}
-          </div>
-          <div>
-            <b>Population</b> : {population.toLocaleString()}
-          </div>
-          <div>
-            <b>Map</b> :{" "}
-            <Link
-              className="text-slate-500 underline decoration-slate-500/30"
-              href={googleMapURL}
-            >
-              GoogleMap
-            </Link>
+            ) : (
+              <>
+                <div>
+                  <b>Nation Name</b> : {flagEmoji} {commonName}
+                </div>
+                <div>
+                  <b>Official Name</b> : {flagEmoji} {officialName}
+                </div>
+              </>
+            )}
+            <div>
+              <b>Capital</b> : {capital}
+            </div>
+            <div>
+              <b>Region</b> : {region}
+            </div>
+            <div>
+              <b>Population</b> : {population.toLocaleString()}
+            </div>
           </div>
         </div>
-        <GoogleMap
-          options={{
-            ...mapOptions,
-            mapTypeId: google.maps.MapTypeId.HYBRID,
-          }}
-          zoom={5}
-          center={mapCenter}
-          mapTypeId={google.maps.MapTypeId.HYBRID}
-          mapContainerStyle={{ width: "480px", height: "480px" }}
-          onLoad={() => console.log("Map Component Loaded...")}
-        >
-          <MarkerF position={mapCenter} />
-        </GoogleMap>
+        <div className="w-120 h-120 lg:w-96 lg:h-96 sm:w-80 sm:h-80 sm:flex sm:flex-col sm:items-center sx:w-80 sx:h-80 sx:flex sx:flex-col sx:items-center">
+          <CountryTitle>Location</CountryTitle>
+          {mapCenter && (
+            <GoogleMap
+              options={{
+                ...mapOptions,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+              }}
+              zoom={5}
+              center={mapCenter}
+              mapTypeId={google.maps.MapTypeId.HYBRID}
+              mapContainerStyle={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "0.5rem",
+              }}
+              onLoad={() => console.log("Map Component Loaded...")}
+            >
+              <MarkerF position={mapCenter} />
+            </GoogleMap>
+          )}
+        </div>
       </div>
     </>
   );
@@ -197,3 +199,10 @@ export const getStaticProps: GetStaticProps = async context => {
     notFound: true,
   };
 };
+
+const CountryTitle = styled.h3`
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  overflow: visible;
+`;

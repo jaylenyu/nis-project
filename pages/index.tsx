@@ -8,7 +8,7 @@ export default function Home({ countries }: HomeProps) {
   return (
     <div>
       <Head>
-        <title>NIS</title>
+        <title>National Infomation System | NIS</title>
         <meta property="og:image" content="/thumbnail.png" />
         <meta property="og:title" content="NIS" />
         <meta property="og:description" content="National Infomation System" />

@@ -30,6 +30,7 @@ const config: Config = {
       },
       spacing: {
         "120": "30rem",
+        "160": "40rem",
       },
       screens: {
         sx: { min: "0px", max: "549px" },
