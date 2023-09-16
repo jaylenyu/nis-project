@@ -174,7 +174,7 @@ export default function Country({ country }: CountryDataProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [{ params: { code: "" } }],
+    paths: [{ params: { code: "kor" } }],
     fallback: true,
   };
 };
