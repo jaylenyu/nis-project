@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import SearchBar from "@/components/SearchBar";
 import CountryList from "@/components/CountryList";
-import Spinner from "@/components/Spinner";
+import Loading from "@/components/Loading";
 
 export default function Search() {
   const router = useRouter();
@@ -12,23 +12,23 @@ export default function Search() {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const setData = async () => {
-    setIsLoading(true);
-    if (typeof q === "string") {
-      const data = await fetchSearchResult(q);
-      setCountries(data);
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const setData = async () => {
+      setIsLoading(true);
+      if (typeof q === "string") {
+        const data = await fetchSearchResult(q);
+        setCountries(data);
+        setIsLoading(false);
+      }
+    };
+
     if (q) {
       setData();
     }
   }, [q]);
 
   if (isLoading) {
-    return <Spinner />;
+    return <Loading />;
   }
 
   return (

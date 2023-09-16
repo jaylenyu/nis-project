@@ -6,7 +6,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { useLoadScript, GoogleMap, MarkerF } from "@react-google-maps/api";
 import Head from "next/head";
 import Image from "next/image";
-import Spinner from "@/components/Spinner";
+import Loading from "@/components/Loading";
 import styled from "styled-components";
 
 export default function Country({ country }: CountryDataProps) {
@@ -66,20 +66,7 @@ export default function Country({ country }: CountryDataProps) {
   }, [country, isLoaded]);
 
   if (router.isFallback || !country || !isLoaded) {
-    return (
-      <>
-        <Head>
-          <title>NIS</title>
-          <meta property="og:image" content="/thumbnail.png" />
-          <meta property="og:title" content="NIS" />
-          <meta
-            property="og:description"
-            content="National Infomation System"
-          />
-        </Head>
-        <Spinner />
-      </>
-    );
+    return <Loading />;
   }
 
   const {
