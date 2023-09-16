@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <link type="image" rel="icon" href="/favicon.ico" />
         <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbzBSLkpSrA8eg1evKyRLSpDhuuGdjFk4&libraries=places"
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API}&libraries=places`}
           async
           defer
         ></script>
