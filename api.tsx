@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function fetchCountries() {
   try {
-    const res = await axios.get("https://naras-api.vercel.app/all");
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_KEY}/all`);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -12,7 +12,9 @@ export async function fetchCountries() {
 
 export async function fetchSearchResult(q: string) {
   try {
-    const res = await axios.get(`https://naras-api.vercel.app/search?q=${q}`);
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_KEY}/search?q=${q}`,
+    );
     return res.data;
   } catch (error) {
     console.log(error);
@@ -22,7 +24,9 @@ export async function fetchSearchResult(q: string) {
 
 export async function fetchCountry(code: string) {
   try {
-    const res = await axios.get(`https://naras-api.vercel.app/code/${code}`);
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_KEY}/code/${code}`,
+    );
     return res.data;
   } catch (error) {
     console.log(error);
