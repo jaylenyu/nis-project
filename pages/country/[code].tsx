@@ -87,7 +87,7 @@ export default function Country({ country }: CountryDataProps) {
         <meta property="og:title" content={`${commonName} - Search Result`} />
         <meta
           property="og:description"
-          content={`${commonName} - Infomation`}
+          content={`${commonName} - Information`}
         />
       </Head>
       <div className="flex justify-around h-fit p-20 sx:p-10 md:flex md:flex-col md:items-center sm:flex sm:flex-col sm:items-center sx:flex sx:flex-col sx:items-center">

@@ -37,7 +37,7 @@ export default function Search() {
         <title>{q} - NIS Search Result</title>
         <meta property="og:image" content="/thumbnail.png" />
         <meta property="og:title" content="NIS Search Result" />
-        <meta property="og:description" content="National Infomation System" />
+        <meta property="og:description" content="National Information System" />
       </Head>
       <SearchBar countries={countries} />
       <CountryList countries={countries} />
