@@ -178,7 +178,7 @@ export const getStaticProps: GetStaticProps = async context => {
         props: {
           country,
         },
-        revalidate: 3, // 3초 주기로 재생성
+        revalidate: 3,
       };
     }
   }
