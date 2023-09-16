@@ -1,8 +1,9 @@
 import axios from "axios";
+const API = "https://naras-api.vercel.app";
 
 export async function fetchCountries() {
   try {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_API_KEY}/all`);
+    const res = await axios.get(`${API}/all`);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -12,9 +13,7 @@ export async function fetchCountries() {
 
 export async function fetchSearchResult(q: string) {
   try {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_KEY}/search?q=${q}`,
-    );
+    const res = await axios.get(`${API}/search?q=${q}`);
     return res.data;
   } catch (error) {
     console.log(error);
@@ -24,9 +23,7 @@ export async function fetchSearchResult(q: string) {
 
 export async function fetchCountry(code: string) {
   try {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_KEY}/code/${code}`,
-    );
+    const res = await axios.get(`${API}/code/${code}`);
     return res.data;
   } catch (error) {
     console.log(error);
