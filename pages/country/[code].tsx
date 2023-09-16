@@ -52,7 +52,7 @@ export default function Country({ country }: CountryDataProps) {
 
   useEffect(() => {
     async function fetchMapCenter() {
-      if (country) {
+      if (country && isLoaded) {
         try {
           const { lat, lng } = await getLatLngBycommonName(country.commonName);
           setMapCenter({ lat, lng });
@@ -63,7 +63,7 @@ export default function Country({ country }: CountryDataProps) {
     }
 
     fetchMapCenter();
-  }, [country]);
+  }, [country, isLoaded]);
 
   if (router.isFallback || !country || !isLoaded) {
     return (
@@ -147,25 +147,23 @@ export default function Country({ country }: CountryDataProps) {
         </div>
         <div className="w-120 h-120 lg:w-96 lg:h-96 sm:w-80 sm:h-80 sm:flex sm:flex-col sm:items-center sx:w-80 sx:h-80 sx:flex sx:flex-col sx:items-center">
           <CountryTitle>Location</CountryTitle>
-          {mapCenter && (
-            <GoogleMap
-              options={{
-                ...mapOptions,
-                mapTypeId: google.maps.MapTypeId.HYBRID,
-              }}
-              zoom={5}
-              center={mapCenter}
-              mapTypeId={google.maps.MapTypeId.HYBRID}
-              mapContainerStyle={{
-                width: "100%",
-                height: "100%",
-                borderRadius: "0.5rem",
-              }}
-              onLoad={() => console.log("Map Component Loaded...")}
-            >
-              <MarkerF position={mapCenter} />
-            </GoogleMap>
-          )}
+          <GoogleMap
+            options={{
+              ...mapOptions,
+              mapTypeId: google.maps.MapTypeId.HYBRID,
+            }}
+            zoom={5}
+            center={mapCenter}
+            mapTypeId={google.maps.MapTypeId.HYBRID}
+            mapContainerStyle={{
+              width: "100%",
+              height: "100%",
+              borderRadius: "0.5rem",
+            }}
+            onLoad={() => console.log("Map loading")}
+          >
+            <MarkerF position={mapCenter} />
+          </GoogleMap>
         </div>
       </div>
     </>
@@ -173,8 +171,12 @@ export default function Country({ country }: CountryDataProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const codes = ["ABW", "AFG", "AGO", "AIA", "ALA"];
+
+  const paths = codes.map(code => ({ params: { code } }));
+
   return {
-    paths: [{ params: { code: "kor" } }],
+    paths,
     fallback: true,
   };
 };
