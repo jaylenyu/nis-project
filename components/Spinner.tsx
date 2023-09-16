@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
-export default function MyComponent() {
+export default function SpinnerComponent() {
   return (
     <div className="static w-screen h-screen flex justify-center items-center">
       <Spinner />
