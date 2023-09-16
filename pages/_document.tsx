@@ -10,6 +10,11 @@ export default function Document() {
           async
           defer
         ></script>
+        <script
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API}&callback=initMap`}
+          async
+          defer
+        ></script>
       </Head>
       <body>
         <Main />
