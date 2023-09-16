@@ -8,7 +8,7 @@ export default function Loading() {
         <title>NIS</title>
         <meta property="og:image" content="/thumbnail.png" />
         <meta property="og:title" content="NIS" />
-        <meta property="og:description" content="National Infomation System" />
+        <meta property="og:description" content="National Information System" />
       </Head>
       <Spinner />
     </>

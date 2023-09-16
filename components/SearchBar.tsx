@@ -4,6 +4,8 @@ import { CountryListProps } from "@/types/components";
 
 export default function SearchBar({ countries }: CountryListProps) {
   const [searchInputValue, setSearchInputValue] = useState("");
+  const [focusedIndex, setFocusedIndex] = useState(-1);
+  const searchListRefs = useRef<(HTMLLIElement | null)[]>([]);
   const [showSearchList, setShowSearchList] = useState(false);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
@@ -24,7 +26,40 @@ export default function SearchBar({ countries }: CountryListProps) {
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      handleSubmit();
+      const valueToSet =
+        focusedIndex !== -1
+          ? searchList[focusedIndex].commonName
+          : (e.currentTarget as HTMLInputElement).value;
+      setSearchInputValue(valueToSet);
+      if (focusedIndex === -1) handleSubmit();
+    } else if (["ArrowDown", "ArrowUp"].includes(e.key)) {
+      handleArrowKeys(e.key);
+    }
+  };
+
+  const handleArrowKeys = (key: string) => {
+    const adjustment = key === "ArrowDown" ? 1 : -1;
+    const valid =
+      key === "ArrowDown"
+        ? focusedIndex < searchList.length - 1
+        : focusedIndex > 0;
+
+    if (valid) {
+      setFocusedIndex(prevIndex => {
+        const newIndex = prevIndex + adjustment;
+        scrollToItem(newIndex);
+        return newIndex;
+      });
+    }
+  };
+
+  const scrollToItem = (index: number) => {
+    const currentItem = searchListRefs.current[index];
+    if (currentItem) {
+      currentItem.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
     }
   };
 
@@ -59,6 +94,7 @@ export default function SearchBar({ countries }: CountryListProps) {
   useEffect(() => {
     if (searchInputValue.length > 0) {
       setShowSearchList(true);
+      setFocusedIndex(-1);
     }
   }, [searchInputValue]);
 
@@ -110,8 +146,13 @@ export default function SearchBar({ countries }: CountryListProps) {
                 {searchList.map(({ commonName }, idx) => (
                   <li
                     key={idx}
+                    ref={el => (searchListRefs.current[idx] = el)}
                     onClick={onInsertInputValue}
-                    className="p-2 border-b cursor-pointer hover:bg-slate-300"
+                    onKeyDown={onKeyDown}
+                    tabIndex={0}
+                    className={`p-2 border-b cursor-pointer hover:bg-slate-300 ${
+                      idx === focusedIndex ? "bg-slate-300" : ""
+                    }`}
                   >
                     {commonName}
                   </li>
