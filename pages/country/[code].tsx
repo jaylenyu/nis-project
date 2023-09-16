@@ -160,7 +160,6 @@ export default function Country({ country }: CountryDataProps) {
               height: "100%",
               borderRadius: "0.5rem",
             }}
-            onLoad={() => console.log("Map loading")}
           >
             <MarkerF position={mapCenter} />
           </GoogleMap>
