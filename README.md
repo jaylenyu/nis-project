@@ -146,7 +146,7 @@ export const getStaticProps: GetStaticProps = async context => {
 │   ├── 📁 api                         
 │   ├── 📁 country
 │   │   └── [code].tsx  
-│   ├─── 📁 search
+│   ├── 📁 search
 │   │   └── index.tsx
 │   ├── _app.tsx      
 │   ├── _document.tsx 
