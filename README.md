@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async context => {
 ```
 - getStaticPaths를 사용하여 최 상단 5국가를 build시에 HTML을 미리 생성
 - fallback을 이용하여 그 외 국가들은 ISR방식으로 생성 후 완전한 페이지를 제공
-- revalidate를 사용하여 국가 데이터가 변경될 시, 3초마다 재생성할 수 있도록 설정
+- revalidate를 사용하여 국가 데이터가 변경될 시, 3초마다 재생성할 수 있도록 설정
 - 개발 기록 <a href="https://jaylenyu.tistory.com/51">자세히 보기<a>
 
 <br />
