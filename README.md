@@ -162,19 +162,7 @@ export const getStaticProps: GetStaticProps = async context => {
 ├── 📁 types                            
 │   └── components.ts
 │
-├── README.md                           
-├── .gitignore                          
-├── .eslintrc.json                      
-├── .prettierrc                         
-├── api.tsx                             
-├── next.config.js                      
-├── next-env.d.ts                       
-├── package.json                        
-├── package-lock.json                   
-├── postcss.config.js                   
-├── tailwind.config.ts                  
-└── tsconfig.json      
-
+└── api.tsx        
 ```
 
 <br />
