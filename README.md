@@ -140,8 +140,7 @@ export const getStaticProps: GetStaticProps = async context => {
 │   ├── Layout.tsx                      
 │   ├── Loading.tsx                     
 │   ├── SearchBar.tsx                   
-│   ├── Spinner.tsx                     
-│   └── index.ts                        
+│   └── Spinner.tsx                                   
 │
 ├── 📁 pages                            
 │   ├── 📁 api                         
