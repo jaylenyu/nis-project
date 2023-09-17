@@ -99,7 +99,7 @@ export const getStaticProps: GetStaticProps = async context => {
 <br />
 
 ### 4. 검색바 사용자 경험 최적화
-![search](https://github.com/jaylenyu/nis-project/assets/124610396/e9522643-b303-4dc0-ba3a-288361a22ac1)
+![search](https://github.com/jaylenyu/nis-project/assets/124610396/b048ae08-6815-464e-9e47-dd91342426ae)
 - 사용자의 검색값이 포함된 국가 리스트를 자동완성으로 구현
 - 키보드로 자동완성 리스트에 접근 및 이동
 - 자동완성 리스트 클릭 및 엔터로 input창에 리스트 자동삽입
