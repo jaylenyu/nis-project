@@ -101,6 +101,8 @@ export default function Country({ country }: CountryDataProps) {
               priority={true}
               alt="nation flag"
               className="h-1/2 w-full rounded-lg shadow-2xl"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcVg8AAdEBJz4pG4wAAAAASUVORK5CYII="
             />
           </div>
           <div className="flex flex-col justify-center items-start h-fit w-120 mt-10 leading-10 md:mt-10 sm:w-80 sm:h-fit sm:mt-10 sx:w-80 sx:h-fit sx:mt-10">
