@@ -27,6 +27,8 @@ export default function CountryItem({
           alt="nation flag"
           className="h-1/2 w-full rounded-t-lg"
           priority={false}
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNcVg8AAdEBJz4pG4wAAAAASUVORK5CYII="
         />
       </div>
       <div className="flex flex-col h-1/2 p-4 text-base">
