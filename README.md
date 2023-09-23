@@ -4,7 +4,7 @@
 
 <br/>
 
-## 🌏 Project
+## 🌏 프로젝트
 
 > 국가 정보 검색 시스템
 
@@ -16,7 +16,7 @@
 <br />
 <br />
 
-## ⚙️ TechStack
+## ⚙️ 기술스택
 
 <div>
   <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=Typescript&logoColor=white"/>
