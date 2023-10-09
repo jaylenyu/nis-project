@@ -1,5 +1,5 @@
 <div align="center">
-  <img width=100% alt="thumbnail" src="https://github.com/jaylenyu/nis-project/assets/124610396/e0a96580-c956-4546-9708-c5b85124d179">
+<img width="100%" alt="thumbnail" src="https://github.com/jaylenyu/nis-project/assets/124610396/b2a3aecb-f816-4c19-8683-f696d5f8f737">
 </div>
 
 <br/>
@@ -10,7 +10,7 @@
 
 <br />
 
-### 배포링크 : <a href="https://nis-next.vercel.app/">National Information System</a>
+### 배포링크 : <a href="https://nis-next.vercel.app">National Information System</a>
 
 <br />
 <br />
@@ -35,7 +35,8 @@
 <br />
 
 ### 1. 메인페이지 정적 생성(Static Site Generation)
-![ssr](https://github.com/jaylenyu/nis-project/assets/124610396/7ab7ce4e-e277-4970-abdf-b3b6af50cf84)
+![ssr](https://github.com/jaylenyu/nis-project/assets/124610396/13126734-571a-43b5-8c1d-fcb380fe5914)
+
 - getStaticProps를 활용해 페이지를 정적으로 빌드시에 생성
 - 이미 생성된 HTML을 미리 가져와 SEO최적화 및 로딩 단축으로 사용자 경험 개선
 
@@ -83,7 +84,8 @@ export const getStaticProps: GetStaticProps = async context => {
 <br />
 
 ### 2. 이미지 렌더링 최적화(Nextjs Image Tag - priority)
-![image](https://github.com/jaylenyu/nis-project/assets/124610396/3384f57e-7f4a-4f9f-82ea-81dd710a6a0d)
+![image](https://github.com/jaylenyu/nis-project/assets/124610396/c4685e2b-424a-4b53-88f7-b39515a0a7f4)
+
 - 이미지 최적화로 webp 변환
 - priority를 활용하여 사용자의 viewport에서 Lazy loading 구현
 
@@ -91,7 +93,8 @@ export const getStaticProps: GetStaticProps = async context => {
 <br />
 
 ### 3. Google Map API 구현
-![Map](https://github.com/jaylenyu/nis-project/assets/124610396/edde0b06-c58a-466b-966b-cf6e02b09013)
+![Map](https://github.com/jaylenyu/nis-project/assets/124610396/a4ec70c5-64ce-4b4a-866a-7427f474ad3c)
+
 - 렌더링과 동시에 Geocoder를 활용하여 좌표값 생성
 - 해당 좌표를 이용하여 국가 위치 및 마커 생성
 - 개발과정 및 기록 <a href="https://jaylenyu.tistory.com/58">자세히보기</a>
@@ -100,7 +103,8 @@ export const getStaticProps: GetStaticProps = async context => {
 <br />
 
 ### 4. 검색바 사용자 경험 최적화
-![search](https://github.com/jaylenyu/nis-project/assets/124610396/b048ae08-6815-464e-9e47-dd91342426ae)
+![searchBar](https://github.com/jaylenyu/nis-project/assets/124610396/36ae7bb7-5330-4de0-b1d8-fed14c70f9fb)
+
 - 사용자의 검색값이 포함된 국가 리스트를 자동완성으로 구현
 - 키보드로 자동완성 리스트에 접근 및 이동
 - 자동완성 리스트 클릭 및 엔터로 input창에 리스트 자동삽입
@@ -109,14 +113,16 @@ export const getStaticProps: GetStaticProps = async context => {
 <br />
 
 ### 5. meta 태그를 통한 SEO 최적화
-![meta](https://github.com/jaylenyu/nis-project/assets/124610396/4b629322-b903-4c58-8d5f-3d8b64a1efed)
+![meta](https://github.com/jaylenyu/nis-project/assets/124610396/08242971-2e51-4ec1-bc7d-05209070b370)
+
 - 메인페이지, 검색페이지, 국가페이지 별 meta태그 적용
 
 <br />
 <br />
 
 ### 6. 반응형 구현
-![responsive2](https://github.com/jaylenyu/nis-project/assets/124610396/e343be44-10a6-46f5-a877-0bb428665990)
+![responsive2](https://github.com/jaylenyu/nis-project/assets/124610396/b03c0bbd-90a6-4649-97cf-ddbe4b8b422d)
+
 - 데스크탑, 패드 및 모바일 반응형 레이아웃 구현
 
 <br />
